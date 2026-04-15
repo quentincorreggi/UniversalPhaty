@@ -16,21 +16,20 @@ The branch/deploy/alignment workflow lives in `PLATFORM.md`.
    into a readable narrative):
 
    - **How it works** — The core rules and behavior. What happens when the
-     player encounters this mechanic? What are the edge cases (including
-     interactions with existing mechanics — see `GAME.md` for the full
-     list in the current game, e.g. Marble Sorter: ice boxes, blockers,
-     tunnels, walls)? Propose sensible defaults for anything the user
-     didn't specify.
+     player encounters this mechanic? What are the edge cases, including
+     interactions with existing mechanics in the game (see `GAME.md` for
+     the current game's mechanic list)? Propose sensible defaults for
+     anything the user didn't specify.
 
-   - **How the player uses it** — The interaction model. Is it tap-based
-     like regular boxes? Does it require timing, multiple taps, dragging, or
-     something else? If it changes how existing interactions work (e.g.,
-     marbles behave differently on the belt), explain that.
+   - **How the player uses it** — The interaction model. Does it use
+     the game's existing input (tap, drag, key, swipe)? Does it require
+     timing, multi-step input, or something new? If it changes how
+     existing interactions behave, explain that.
 
-   - **What it looks and sounds like** — Visual appearance on the grid (color,
-     shape, icon, animation). What happens visually when the mechanic
-     activates (particles, glow, shake, etc.)? Any sound effects? Propose
-     specific colors and effects — the user can adjust these later.
+   - **What it looks and sounds like** — Visual appearance (color, shape,
+     icon, animation). What happens visually when the mechanic activates
+     (particles, glow, shake, screen effects)? Any sound effects?
+     Propose specific colors and effects — the user can adjust later.
 
    - **How it appears in the authoring surface (level editor)** — What
      toolbar button or mode is added? What color/icon represents it? Can
@@ -56,15 +55,17 @@ The branch/deploy/alignment workflow lives in `PLATFORM.md`.
 4. **Implement the mechanic** following the patterns in `GAME.md` (game
    architecture, file layout, registry contract) and `PLATFORM.md`
    (coding conventions that hold for every UniversalPhaty game):
-   - Extend the game via its registry where possible (in Marble Sorter:
-     new box types → `js/box_<name>.js` + register + `<script>` tag).
-   - For mechanics outside the registry, follow `GAME.md`'s "How to Add
+   - Prefer extending the game via its registry. The starter ships an
+     entity registry (`registerEntityType` in `js/registry.js`); new
+     entities go in `js/entity_<name>.js` with a `<script>` tag added
+     to `index.html`. Games built on top may introduce their own
+     registries — `GAME.md` is the source of truth.
+   - For mechanics outside any registry, follow `GAME.md`'s "How to Add
      an Entirely New Mechanic" section.
    - Follow all conventions: `var` not `const`, global functions, vanilla
      JS, no build step.
-   - If the game has a level/scenario system (Marble Sorter has `LEVELS`
-     in `config.js`), add at least one showcase level that demonstrates
-     the mechanic.
+   - If the game has a level/scenario system, add at least one showcase
+     level that demonstrates the mechanic.
 
 5. **Validate the code:**
    - Run `node --check` on each new or modified JS file to catch syntax errors

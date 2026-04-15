@@ -2,8 +2,8 @@
 
 This document describes the reusable prototyping workflow. It is
 game-agnostic: every rule here should hold whether the repo hosts a
-Marble Sorter, a platformer, a puzzle game, or anything else. Game-specific
-architecture lives in `GAME.md`.
+platformer, a puzzle game, an idle game, or anything else.
+Game-specific architecture lives in `GAME.md`.
 
 ## Core Idea
 
@@ -129,10 +129,12 @@ to keep the codebase fast for Claude to edit and fast to iterate on.
   `index.html` in a deterministic order.
 - **Small files.** If a file grows past ~700 lines, consider splitting.
   Claude edits more reliably against small, focused files.
-- **Registry / plugin patterns.** New entities (box types, enemies,
-  power-ups, whatever the game uses) should register themselves via a
-  registry so that adding one new file + one script tag is enough. See
-  `GAME.md` for the current game's registry contract.
+- **Registry / plugin patterns.** New entities (enemies, power-ups,
+  obstacles — whatever the game uses) should register themselves via a
+  registry so that adding one new file + one script tag is enough. The
+  starter ships an entity registry in `js/registry.js`; games may add
+  their own registries for other kinds of things. See `GAME.md` for the
+  current game's registry contract.
 - **Validate with `node --check`** before committing — it catches syntax
   errors without needing a browser.
 
@@ -154,8 +156,7 @@ To use this repo as a starting point for a different game:
 4. **Update** user-visible strings and URLs to match your repo / game:
    - Repo name in `PLATFORM.md` URL examples
    - Repo name in `.claude/commands/share.md`
-   - `<title>` and header text in `landing.html` (currently names the
-     Marble Sorter game — change to your game's name)
+   - `<title>` and header text in `landing.html`
    - `<title>` and any in-game header text in `index.html`
 5. **First commit to `main`** a minimal playable skeleton (even just a
    blank canvas with one registered entity). Every prototype branch starts

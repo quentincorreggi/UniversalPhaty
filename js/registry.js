@@ -1,31 +1,48 @@
-// ============================================================
-// registry.js — Mechanic registration system
-// ============================================================
+// Entity type registry — the primary extension point for a UniversalPhaty
+// game. Claude adds new mechanics mostly by registering new entity types
+// in their own files, so the core game loop stays small and stable.
 //
-// Box types register: drawClosed, drawReveal, plus editor metadata.
-// The core engine calls these without knowing about specific types.
+// To add a new entity type:
+//   1. Create js/entity_<name>.js
+//   2. Call registerEntityType('<name>', { init, update, draw })
+//   3. Add a <script> tag to index.html AFTER registry.js and BEFORE
+//      game.js
 //
-// To add a new box type, create js/boxes/box_yourtype.js and call:
-//   registerBoxType('yourtype', { ... });
-//
-// Required interface:
-//   label        : string — display name in editor toolbar
-//   editorColor  : string — button color in editor
-//   drawClosed(ctx, x, y, w, h, ci, S, tick, idlePhase)
-//   drawReveal(ctx, x, y, w, h, ci, S, phase, remaining, tick)
-//   editorCellStyle(ci)   — returns { background, borderColor }
-//   editorCellHTML(ci)     — returns inner HTML for editor grid cell
-// ============================================================
+// Definition fields (all optional except `draw`):
+//   init(e)        — called once when the entity is spawned. Attach any
+//                    per-entity state to `e`.
+//   update(e, dt)  — called each frame with delta-seconds. Set
+//                    `e.dead = true` to remove the entity.
+//   draw(ctx, e)   — called each frame. Draw the entity.
 
-var BoxTypes = {};
-var BoxTypeOrder = []; // insertion order for toolbar
+var ENTITY_TYPES = {};
+var ENTITY_TYPE_ORDER = []; // insertion order, in case a game wants a toolbar
 
-function registerBoxType(id, def) {
+function registerEntityType(id, def) {
   def.id = id;
-  BoxTypes[id] = def;
-  BoxTypeOrder.push(id);
+  ENTITY_TYPES[id] = def;
+  ENTITY_TYPE_ORDER.push(id);
 }
 
-function getBoxType(id) {
-  return BoxTypes[id] || BoxTypes[BoxTypeOrder[0]];
+function getEntityType(id) {
+  return ENTITY_TYPES[id] || null;
+}
+
+// Create a new entity of the given type, push it into `entities`, and
+// return it. Any `params` are merged onto the entity before `init` runs.
+function spawnEntity(id, params) {
+  var def = getEntityType(id);
+  if (!def) {
+    console.warn('Unknown entity type:', id);
+    return null;
+  }
+  var e = { type: id };
+  if (params) {
+    for (var k in params) {
+      if (params.hasOwnProperty(k)) e[k] = params[k];
+    }
+  }
+  if (def.init) def.init(e);
+  entities.push(e);
+  return e;
 }

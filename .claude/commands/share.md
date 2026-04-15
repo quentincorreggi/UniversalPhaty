@@ -41,9 +41,8 @@ into that level — no editor or JSON pasting needed.
 4. **Generate `prototype.json`.** Fill in all fields:
    - `name`: A clear, human-readable name for the mechanic
    - `description`: 1-2 sentences explaining the mechanic in plain language
-   - `howToPlay`: Step-by-step instructions for the showcase level (e.g.,
-     "Tap the green boxes first to crack the adjacent ice, then tap the
-     revealed boxes to sort the marbles")
+   - `howToPlay`: Step-by-step instructions for the showcase level,
+     written in plain language the player can follow
    - `author`: Ask the user if not obvious from context
    - `showcaseLevel`: The level JSON object (not stringified — embedded directly)
 
