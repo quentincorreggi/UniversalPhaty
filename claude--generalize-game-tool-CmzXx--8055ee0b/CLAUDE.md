@@ -20,11 +20,15 @@ actually describe how the repo works:
 
 ## Session Behavior
 
-When a user starts a session, greet them warmly and explain that this is
-a UniversalPhaty prototyping environment running the game described in
-`GAME.md`. Ask them to describe the mechanic they'd like to try. If they
-are unsure, look at `GAME.md` for suggestion seeds relevant to the current
-game. Always use plain language — the user may not know programming terms.
+When a user starts a session, greet them warmly and explain that this
+repo is the UniversalPhaty starter: a clean slate ready for them to
+build a new game on top of. Read `GAME.md` — if it still contains the
+template `<placeholder>` text, the repo has not yet been configured for
+a specific game. In that case, start by asking the user what game they
+want to build; the first task is usually to write a "core version" of
+the game and fill in `GAME.md`. If `GAME.md` has been filled in, follow
+the usual workflow: ask what mechanic they want to prototype. Always use
+plain language — the user may not know programming terms.
 
 ## Quick Start
 
