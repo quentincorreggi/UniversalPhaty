@@ -41,9 +41,8 @@ into that level — no editor or JSON pasting needed.
 4. **Generate `prototype.json`.** Fill in all fields:
    - `name`: A clear, human-readable name for the mechanic
    - `description`: 1-2 sentences explaining the mechanic in plain language
-   - `howToPlay`: Step-by-step instructions for the showcase level (e.g.,
-     "Tap the green boxes first to crack the adjacent ice, then tap the
-     revealed boxes to sort the marbles")
+   - `howToPlay`: Step-by-step instructions for the showcase level,
+     written in plain language the player can follow
    - `author`: Ask the user if not obvious from context
    - `showcaseLevel`: The level JSON object (not stringified — embedded directly)
 
@@ -55,14 +54,14 @@ into that level — no editor or JSON pasting needed.
    - `git commit -m "Add prototype.json for sharing"`
    - `git push -u origin <current-branch>`
 
-7. **Construct the preview URL** using the pattern from CLAUDE.md:
+7. **Construct the preview URL** using the pattern from `PLATFORM.md`:
    - Get SHA: `git rev-parse --short=8 HEAD`
    - Branch name with `/` replaced by `--`
-   - URL: `https://quentincorreggi.github.io/MS_Phaty/<branch>--<sha>/`
+   - URL: `https://quentincorreggi.github.io/UniversalPhaty/<branch>--<sha>/`
 
 8. **Share with the user.** Provide:
    - The preview URL (playable link with showcase level)
-   - The landing page URL: `https://quentincorreggi.github.io/MS_Phaty/`
+   - The landing page URL: `https://quentincorreggi.github.io/UniversalPhaty/`
    - Confirm the prototype will appear on the landing page after deploy (~30-60s)
    - Remind the user they can share just the landing page URL with the team —
      everyone can browse and play all shared prototypes from there
