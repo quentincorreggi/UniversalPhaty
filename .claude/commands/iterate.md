@@ -36,7 +36,8 @@ Help the user refine or extend an existing mechanic prototype.
    sentences. End with: "Sound right?"
 
 6. **Implement the changes** following the same conventions as the original
-   prototype (see CLAUDE.md).
+   prototype (see `GAME.md` for game-specific patterns and `PLATFORM.md`
+   for the coding conventions that hold across every UniversalPhaty game).
 
 7. **Validate:** Run `node --check` on modified JS files.
 

@@ -55,14 +55,14 @@ into that level — no editor or JSON pasting needed.
    - `git commit -m "Add prototype.json for sharing"`
    - `git push -u origin <current-branch>`
 
-7. **Construct the preview URL** using the pattern from CLAUDE.md:
+7. **Construct the preview URL** using the pattern from `PLATFORM.md`:
    - Get SHA: `git rev-parse --short=8 HEAD`
    - Branch name with `/` replaced by `--`
-   - URL: `https://quentincorreggi.github.io/MS_Phaty/<branch>--<sha>/`
+   - URL: `https://quentincorreggi.github.io/UniversalPhaty/<branch>--<sha>/`
 
 8. **Share with the user.** Provide:
    - The preview URL (playable link with showcase level)
-   - The landing page URL: `https://quentincorreggi.github.io/MS_Phaty/`
+   - The landing page URL: `https://quentincorreggi.github.io/UniversalPhaty/`
    - Confirm the prototype will appear on the landing page after deploy (~30-60s)
    - Remind the user they can share just the landing page URL with the team —
      everyone can browse and play all shared prototypes from there
